@@ -8,8 +8,8 @@
 		<version>2.1.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.medwiz</groupId>
-	<artifactId>medic</artifactId>
+	<groupId>com.medic</groupId>
+	<artifactId>main</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>medic</name>
 	<description>Demo project for Spring Boot</description>
@@ -20,6 +20,12 @@
 
 	<dependencies>
 
+		
+		<dependency>
+			<groupId>com.medic</groupId>
+			<artifactId>common-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

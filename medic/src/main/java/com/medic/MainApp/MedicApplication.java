@@ -1,4 +1,4 @@
-package com.medwiz.medic;
+package com.medic.MainApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
