@@ -1,13 +1,15 @@
 package com.medic.MainApp.Models;
 
+import org.apache.tomcat.util.codec.binary.StringUtils;
+
 import java.util.Date;
 
 public class User {
 
-
-    private int user_id;
+    private String user_id;
     private String nic;
     private Date dob;
+    private String email;
     private String gender;
     private String first_name;
     private String last_name;
@@ -16,11 +18,11 @@ public class User {
     public User() {
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -70,6 +72,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 
