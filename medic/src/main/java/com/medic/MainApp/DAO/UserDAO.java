@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -18,12 +19,11 @@ public class UserDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
     public List<User> getAllUsers() {
 
             String sql = "SELECT * FROM users";
             return jdbcTemplate.query(sql , new UserDataMapper());
-
-
 
 
     }
