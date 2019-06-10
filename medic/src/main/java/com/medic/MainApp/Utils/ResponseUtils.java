@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 public class ResponseUtils {
 
     @Deprecated
-    public ResponseEntity<?> successSaving(){
+    public ResponseEntity successSaving(){
         return ResponseEntity.ok().body(new MedicResponse(HttpStatus.OK));
     }
 
-    public ResponseEntity<?> successRetrieval(Object object){
+    public ResponseEntity successRetrieval(Object object){
         return ResponseEntity.ok().body(new MedicResponse(HttpStatus.OK , object , ResponseMessages.SUCCESS_DATA_RETRIEVAL));
     }
 

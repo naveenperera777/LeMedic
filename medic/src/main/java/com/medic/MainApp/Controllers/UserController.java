@@ -1,15 +1,14 @@
 package com.medic.MainApp.Controllers;
 import com.medic.MainApp.Models.User;
 import com.medic.MainApp.Response.MedicResponse;
+import com.medic.MainApp.Response.ResponseMessages;
 import com.medic.MainApp.Services.UserService;
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.Response;
 import java.util.Date;
@@ -25,15 +24,38 @@ public class UserController extends ResponseUtils {
         this.userService = userService;
     }
 
+    //Get details of all users
     @GetMapping("/users")
     public ResponseEntity getAllUsers(){
         List users = userService.getAllUsers();
         logger.info("users {}" ,users);
         if (!users.isEmpty()) {
-            return successRetrieval(users);
+            ResponseEntity responseEntity = successRetrieval(users);
+            return responseEntity;
         }
         return FailedRetrieval(users);
     }
+
+    //Get details of a user by ID
+    @GetMapping("/users/{id}")
+    public ResponseEntity getUserById(@PathVariable String id){
+        Object user = userService.getUserById(id);
+        logger.info("user {}" , user);
+        if (user != null){
+            ResponseEntity responseEntity = successRetrieval(user);
+            return responseEntity;
+        }
+        return FailedRetrieval(user);
+    }
+
+    //Save a user in the Database
+    @PostMapping("/users")
+    public void saveUser(@RequestBody User user){
+
+        userService.saveUser(user);
+
+    }
+
 
 
 }
