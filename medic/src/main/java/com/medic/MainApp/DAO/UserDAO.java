@@ -2,6 +2,8 @@ package com.medic.MainApp.DAO;
 
 import com.medic.MainApp.DataMapper.UserDataMapper;
 import com.medic.MainApp.Models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +17,8 @@ import java.util.List;
 public class UserDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
+
 
     public UserDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,9 +36,9 @@ public class UserDAO {
 
     public void saveUser(User user){
 
-
-//        String sql = "INSERT INTO users (id , firstname , lastname , gender , nic , email , dob ,role) VALUES (?,?,?,?,?,?,?,?)";
-//         jdbcTemplate.update(sql , new UserDataMapper());
+       logger.info("UserDAO -> {}",user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
+        String sql = "INSERT INTO users (id , firstname , lastname , gender , nic , email ,role) VALUES (?,?,?,?,?,?,?)";
+         jdbcTemplate.update(sql , user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
 
     }
 }

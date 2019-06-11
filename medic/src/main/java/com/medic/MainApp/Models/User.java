@@ -8,7 +8,7 @@ public class User {
 
     private String user_id;
     private String nic;
-    private Date dob;
+//    private Date dob;
     private String email;
     private String gender;
     private String first_name;
@@ -34,13 +34,13 @@ public class User {
         this.nic = nic;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
+//    public Date getDob() {
+//        return dob;
+//    }
+//
+//    public void setDob(Date dob) {
+//        this.dob = dob;
+//    }
 
     public String getGender() {
         return gender;

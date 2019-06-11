@@ -21,7 +21,7 @@ public class UserDataMapper implements RowMapper<User> {
         user.setFirst_name(resultSet.getString("firstname"));
         user.setLast_name(resultSet.getString("lastname"));
         user.setGender(resultSet.getString("gender"));
-        user.setDob(resultSet.getDate("dob"));
+//        user.setDob(resultSet.getDate("dob"));
         user.setNic(resultSet.getString("nic"));
         user.setEmail(resultSet.getString("email"));
         user.setRole(resultSet.getString("role"));
