@@ -29,7 +29,7 @@ public class UserDAO {
             return jdbcTemplate.query(sql , new UserDataMapper());
     }
 
-    public Object getUserById(String id){
+    public List getUserById(String id){
         String sql = "SELECT * FROM users WHERE id=?";
         return jdbcTemplate.query(sql, new String[]{id} , new UserDataMapper());
     }

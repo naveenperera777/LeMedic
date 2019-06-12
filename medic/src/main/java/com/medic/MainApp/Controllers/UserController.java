@@ -39,7 +39,7 @@ public class UserController extends ResponseUtils {
     //Get details of a user by ID
     @GetMapping("/users/{id}")
     public ResponseEntity getUserById(@PathVariable String id){
-        Object user = userService.getUserById(id);
+        List user = userService.getUserById(id);
         logger.info("user {}" , user);
         if (user != null){
             ResponseEntity responseEntity = successRetrieval(user);
@@ -55,19 +55,25 @@ public class UserController extends ResponseUtils {
         userService.saveUser(user);
     }
 
-    //Update user in the Database
+    //Update a user in the Database
     @PutMapping("/users/{id}")
     public void updateUser(@RequestBody User user, @PathVariable String id){
         logger.info("UserController--UpdateUser---->" , user);
         userService.updateUser(user);
     }
 
+    //Delete a user in the Database
     @DeleteMapping("users/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id){
         logger.info("UserController--DeleteUser {}", id);
-        userService.deleteUser(id);
+        List user = userService.getUserById(id);
+        logger.info("UserController--DeleteUserObject---> {}", user);
+        if (!user.isEmpty()) {
+            userService.deleteUser(id);
+            return successDelete();
+          }
+        return userNotFound(id);
 
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
 
