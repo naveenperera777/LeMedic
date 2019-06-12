@@ -51,11 +51,24 @@ public class UserController extends ResponseUtils {
     //Save a user in the Database
     @PostMapping("/users")
     public void saveUser(@RequestBody User user){
-
+        logger.info("userSave----->", user);
         userService.saveUser(user);
-
     }
 
+    //Update user in the Database
+    @PutMapping("/users/{id}")
+    public void updateUser(@RequestBody User user, @PathVariable String id){
+        logger.info("UserController--UpdateUser---->" , user);
+        userService.updateUser(user);
+    }
+
+    @DeleteMapping("users/delete/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String id){
+        logger.info("UserController--DeleteUser {}", id);
+        userService.deleteUser(id);
+
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
 
 
 }

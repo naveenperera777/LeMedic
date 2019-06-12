@@ -35,11 +35,22 @@ public class UserDAO {
     }
 
     public void saveUser(User user){
-
        logger.info("UserDAO -> {}",user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
         String sql = "INSERT INTO users (id , firstname , lastname , gender , nic , email ,role) VALUES (?,?,?,?,?,?,?)";
          jdbcTemplate.update(sql , user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
 
+    }
+
+    public void updateUser(User user){
+        logger.info("UserDAO--updateUser---> " , user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
+        String sql = "UPDATE users SET id=?,firstname=? , lastname=? , gender=? , nic=?, email=? ,role=? WHERE id=?";
+        jdbcTemplate.update(sql, user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole(),user.getUser_id());
+    }
+
+    public void deleteUser(String id){
+        logger.info("UserDAO--deleteUser--> {}" ,id);
+        String sql = "DELETE FROM users WHERE id=?";
+        jdbcTemplate.update(sql ,id);
     }
 }
 

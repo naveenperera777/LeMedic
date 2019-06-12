@@ -37,6 +37,16 @@ public class UserService {
         userDAO.saveUser(user);
     }
 
+    public void updateUser(User user){
+        logger.info("Service--updateUsers--> ",user);
+        userDAO.updateUser(user);
+    }
+
+    public void deleteUser(String id){
+        logger.info("Service--deleteUser-->{}",id);
+        userDAO.deleteUser(id);
+    }
+
     public String getme(MedicResponse str){
         return "new";
     }
