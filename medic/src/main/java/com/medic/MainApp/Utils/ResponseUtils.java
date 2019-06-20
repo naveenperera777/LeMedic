@@ -12,6 +12,7 @@ public class ResponseUtils {
         return ResponseEntity.ok().body(new MedicResponse(HttpStatus.OK));
     }
 
+    //User Response Entities
     public ResponseEntity successRetrieval(Object object){
         return ResponseEntity.ok().body(new MedicResponse(HttpStatus.OK , object , ResponseMessages.SUCCESS_DATA_RETRIEVAL));
     }
@@ -29,6 +30,9 @@ public class ResponseUtils {
         MedicResponse userNotFound = new MedicResponse(HttpStatus.NOT_FOUND , id , ResponseMessages.NO_USER_FOUND );
         return new ResponseEntity(userNotFound , HttpStatus.NOT_FOUND);
     }
+
+    //Patient Response Entities
+//    public ResponseEntity
 
 
 }
