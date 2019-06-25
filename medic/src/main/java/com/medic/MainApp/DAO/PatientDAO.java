@@ -4,6 +4,7 @@ import com.medic.MainApp.DataMapper.PatientDataMapper;
 import com.medic.MainApp.Models.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,12 @@ public class PatientDAO {
     public void updatePatient(Patient patient){
         logger.info("Update Patient DAO-----{}",patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile());
         String sql = "UPDATE patient SET id=?, firstname=? , lastname=? , gender=? , nic=? , city=? , district=? , email=? , mobile=? WHERE  id=?";
-        jdbcTemplate.update(sql, patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile(),patient.getPatient_id());
+          jdbcTemplate.update(sql, patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile(),patient.getPatient_id());
+    }
+    public void deletePatient(String id){
+        logger.info("Delete Patient DAO----{}",id);
+        String sql = "DELETE FROM patient WHERE id=?";
+        jdbcTemplate.update(sql,id);
     }
 
 }

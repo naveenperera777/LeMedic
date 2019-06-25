@@ -24,4 +24,8 @@ public class PatientService {
     public void updatePatient(Patient patient){
           patientDAO.updatePatient(patient);
     }
+
+    public void deletePatient(String id){
+           patientDAO.deletePatient(id);
+    }
 }

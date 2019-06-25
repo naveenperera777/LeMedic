@@ -48,6 +48,13 @@ public class PatientController extends ResponseUtils {
 
     }
 
+    //Delete Patient
+    @DeleteMapping("/patient/delete/{id}")
+     public void deletePatient(@PathVariable String id){
+        logger.info("PatientController--->Delete");
+        patientService.deletePatient(id);
+    }
+
 
 
 }
