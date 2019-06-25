@@ -26,6 +26,13 @@ public class PatientDAO {
         return jdbcTemplate.query(sql, patientDataMapper);
     }
 
+    public List<Patient> getPatientById(String id){
+        logger.info("Find Patient By id------{}",id);
+        String sql = "SELECT * FROM patient WHERE id=?";
+        PatientDataMapper patientDataMapper = new PatientDataMapper();
+        return jdbcTemplate.query(sql,patientDataMapper,id);
+    }
+
     public void addPatient(Patient patient){
         logger.info("Add patient DAO--->{}",patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile());
         String sql = "INSERT INTO patient (id , firstname , lastname , gender , nic , city , district , email , mobile) VALUES ( ?,?,?,?,?,?,?,?,?)";

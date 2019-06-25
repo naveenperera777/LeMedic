@@ -28,4 +28,8 @@ public class PatientService {
     public void deletePatient(String id){
            patientDAO.deletePatient(id);
     }
+
+    public List<Patient> getPatientById(String id){
+        return  patientDAO.getPatientById(id);
+    }
 }

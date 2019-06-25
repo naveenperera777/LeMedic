@@ -7,6 +7,7 @@ import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,19 @@ public class PatientController extends ResponseUtils {
             return responseEntity;
         }
         return FailedRetrieval(patientList);
+    }
+
+    //Get Patient By id
+
+    @GetMapping("patient")
+    public ResponseEntity getPatientById(@RequestParam("id") String id){
+        logger.info("PatientController--->Get Patient By id",id);
+        List patient =patientService.getPatientById(id);
+        if (!patient.isEmpty()){
+            ResponseEntity responseEntity = successRetrieval(patient);
+            return responseEntity;
+        }
+        return FailedRetrieval(patient);
     }
 
     //Add patient
