@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,6 +39,15 @@ public class PatientController extends ResponseUtils {
         logger.info("PatientController-SavePatient--->Saving..");
         patientService.addPatient(patient);
     }
+
+    //Update patient
+    @PutMapping("/patient/update")
+    public void updatePatient(@RequestBody Patient patient){
+        logger.info("PatientController-Update----->Update");
+        patientService.updatePatient(patient);
+
+    }
+
 
 
 }

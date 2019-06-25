@@ -31,4 +31,10 @@ public class PatientDAO {
         jdbcTemplate.update(sql, patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile());
     }
 
+    public void updatePatient(Patient patient){
+        logger.info("Update Patient DAO-----{}",patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile());
+        String sql = "UPDATE patient SET id=?, firstname=? , lastname=? , gender=? , nic=? , city=? , district=? , email=? , mobile=? WHERE  id=?";
+        jdbcTemplate.update(sql, patient.getPatient_id(),patient.getFirst_name(),patient.getLast_name(),patient.getGender(),patient.getNic(),patient.getCity(),patient.getDistrict(),patient.getEmail(),patient.getMobile(),patient.getPatient_id());
+    }
+
 }

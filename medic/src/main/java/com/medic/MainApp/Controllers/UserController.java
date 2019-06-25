@@ -49,14 +49,14 @@ public class UserController extends ResponseUtils {
     }
 
     //Save a user in the Database
-    @PostMapping("/users")
+    @PostMapping("/users/add")
     public void saveUser(@RequestBody User user){
         logger.info("userSave----->", user);
         userService.saveUser(user);
     }
 
     //Update a user in the Database
-    @PutMapping("/users/{id}")
+    @PutMapping("/users/update/{id}")
     public void updateUser(@RequestBody User user, @PathVariable String id){
         logger.info("UserController--UpdateUser---->" , user);
         userService.updateUser(user);
