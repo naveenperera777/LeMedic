@@ -16,4 +16,8 @@ public class PatientService {
       public List<Patient> getAllPatients(){
         return patientDAO.getAllPatients();
     }
+
+    public void addPatient(Patient patient){
+          patientDAO.addPatient(patient);
+    }
 }
