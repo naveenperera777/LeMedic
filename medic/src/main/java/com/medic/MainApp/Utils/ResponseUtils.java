@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public class ResponseUtils {
 
-    @Deprecated
+
     public ResponseEntity successSaving(){
         return ResponseEntity.ok().body(new MedicResponse(HttpStatus.OK));
     }

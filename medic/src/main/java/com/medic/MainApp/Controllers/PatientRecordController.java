@@ -3,20 +3,18 @@ package com.medic.MainApp.Controllers;
 
 import com.medic.MainApp.Models.PatientRecord;
 import com.medic.MainApp.Services.PatientRecordService;
+import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
-public class PatientRecordController {
+public class PatientRecordController extends ResponseUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
     private final PatientRecordService patientRecordService;
@@ -26,7 +24,7 @@ public class PatientRecordController {
         this.patientRecordService = patientRecordService;
     }
 
-//    //Get a patient record by id
+    //Get a patient record by id
 //    @GetMapping("/record/{id}")
 //    public ResponseEntity getPatientRecordById(String id){
 //        List patientRecord = patientRecordService.getPatientRecordById(id);
@@ -39,14 +37,19 @@ public class PatientRecordController {
 //        return patientRecords;
 //    }
 //
-//    //Get all patient records
-//    @GetMapping("/record/patient/all")
-//    public ResponseEntity getAllPatientRecords(){
-//        List AllPatientRecords = patientRecordService.getAllPatientRecords();
-//    }
+    //Get all patient records
+    @GetMapping("/record/patient/{id}/all")
+    public ResponseEntity getAllPatientRecords(@PathVariable String id){
+        List AllPatientRecords = patientRecordService.getAllPatientRecordsByPatientId(id);
+        if (AllPatientRecords != null) {
+           return successRetrieval(AllPatientRecords);
+        }
+        return FailedRetrieval(AllPatientRecords);
+
+    }
 //
     //Save a patient record
-    @PostMapping("/record/save")
+    @PostMapping("/record/patient/save")
     public void savePatientRecord(@RequestBody PatientRecord patientRecord){
         patientRecordService.savePatientRecord(patientRecord);
     }

@@ -23,5 +23,10 @@ public class PatientRecordService {
         patientRecordDAO.savePatientRecord(patientRecord);
     }
 
+    public List<PatientRecord> getAllPatientRecordsByPatientId(String id){
+        logger.info("patient record service {}" , id);
+        return patientRecordDAO.getAllPatientRecordsByPatientId(id);
+    }
+
 
 }
