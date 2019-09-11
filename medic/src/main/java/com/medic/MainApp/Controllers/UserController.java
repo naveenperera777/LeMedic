@@ -58,7 +58,7 @@ public class UserController extends ResponseUtils {
     //Update a user in the Database
     @PutMapping("/users/update/{id}")
     public void updateUser(@RequestBody User user, @PathVariable String id){
-        logger.info("UserController--UpdateUser---->" , user);
+       // logger.info("UserController--UpdateUser---->" , user);
         userService.updateUser(user);
     }
 
