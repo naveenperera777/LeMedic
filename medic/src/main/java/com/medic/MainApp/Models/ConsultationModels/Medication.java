@@ -1,10 +1,12 @@
 package com.medic.MainApp.Models.ConsultationModels;
 
+import java.sql.Timestamp;
+
 public class Medication {
     private int session_id;
     private String medical_management;
     private String surgical_management;
-    private String next_date;
+    private Timestamp next_date;
     private String remarks;
 
     public int getSession_id() {
@@ -40,11 +42,11 @@ public class Medication {
     }
 
 
-    public String getNext_date() {
+    public Timestamp getNext_date() {
         return next_date;
     }
 
-    public void setNext_date(String next_date) {
+    public void setNext_date(Timestamp next_date) {
         this.next_date = next_date;
     }
 
