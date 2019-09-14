@@ -24,19 +24,19 @@ public class PatientRecordController extends ResponseUtils {
         this.patientRecordService = patientRecordService;
     }
 
-    //Get a patient record by id
+//    Get a patient record by id
 //    @GetMapping("/record/{id}")
 //    public ResponseEntity getPatientRecordById(String id){
 //        List patientRecord = patientRecordService.getPatientRecordById(id);
 //    }
 //
-    //Get all records for a particular patient
+//    Get all records for a particular patient
 //    @GetMapping("/record/patient/{id}")
 //    public ResponseEntity getAllRecordsOfAPatient(String patientId){
 //        List patientRecords = patientRecordService.getAllRecordsOfAPatient(patientId);
 //        return patientRecords;
 //    }
-//
+
     //Get all patient records
     @GetMapping("/record/patient/{id}/all")
     public ResponseEntity getAllPatientRecords(@PathVariable String id){
