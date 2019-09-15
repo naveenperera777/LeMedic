@@ -1,20 +1,23 @@
 package com.medic.MainApp.Services.ConsultationServices;
 
+import com.medic.MainApp.DAO.ConsultationDAO.SessionDAO;
+import com.medic.MainApp.Models.ConsultationModels.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SessionService {
 
-//    private final UserDAO userDAO;
-//    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-//
-//    public UserService(UserDAO userDAO){
-//        this.userDAO = userDAO;
-//    }
-//
-//    public List<User> getAllSessions(){
-//
-//        return userDAO.getAllUsers();
-//    }
+    private final SessionDAO sessionDAO;
+    private static final Logger logger = LoggerFactory.getLogger(SessionService.class);
+
+    public SessionService(SessionDAO sessionDAO){
+        this.sessionDAO = sessionDAO;
+    }
+
+    public void setSession(Session session){
+            sessionDAO.setSesssion(session);
+    }
 
 }
