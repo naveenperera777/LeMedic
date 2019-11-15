@@ -28,41 +28,41 @@ public class PatientStatisticsController extends ResponseUtils {
           return successRetrieval(count);
     }
 
-    @GetMapping("/patient/count/month")
-    public ResponseEntity getPatientCountThisMonth(){
-    }
-
-    @GetMapping("/patient/count/month/last")
-    public ResponseEntity getPatientCountLastThirty(){
-    }
-
-    @GetMapping("/patient/count/month/all")
-    public ResponseEntity getPatientCountLastThirty(){
-    }
-
-    @GetMapping("/patient/count/year")
-    public ResponseEntity getPatientCountCurrentYear(){
-    }
-
-    @GetMapping("/patient/count/year/all")
-    public ResponseEntity getPatientCountLastThirty(){
-    }
-
-    @GetMapping("/patient/disease/count")
-    public ResponseEntity getPatientCountByDisease(){
-    }
-
-    @GetMapping("/patient/district/count")
-    public ResponseEntity getPatientCountByDistrict(){
-    }
-
-    @GetMapping("/patient/age/count")
-    public ResponseEntity getPatientCountByAgeRange(){
-    }
-
-    @GetMapping("/patient/gender/count")
-    public ResponseEntity getPatientByGender(){
-    }
+//    @GetMapping("/patient/count/month")
+//    public ResponseEntity getPatientCountThisMonth(){
+//    }
+//
+//    @GetMapping("/patient/count/month/last")
+//    public ResponseEntity getPatientCountLastThirty(){
+//    }
+//
+//    @GetMapping("/patient/count/month/all")
+//    public ResponseEntity getPatientCountLastThirty(){
+//    }
+//
+//    @GetMapping("/patient/count/year")
+//    public ResponseEntity getPatientCountCurrentYear(){
+//    }
+//
+//    @GetMapping("/patient/count/year/all")
+//    public ResponseEntity getPatientCountLastThirty(){
+//    }
+//
+//    @GetMapping("/patient/disease/count")
+//    public ResponseEntity getPatientCountByDisease(){
+//    }
+//
+//    @GetMapping("/patient/district/count")
+//    public ResponseEntity getPatientCountByDistrict(){
+//    }
+//
+//    @GetMapping("/patient/age/count")
+//    public ResponseEntity getPatientCountByAgeRange(){
+//    }
+//
+//    @GetMapping("/patient/gender/count")
+//    public ResponseEntity getPatientByGender(){
+//    }
 
 
 

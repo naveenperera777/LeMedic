@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.Response;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +51,7 @@ public class UserController extends ResponseUtils {
     public void saveUser(@RequestBody User user){
         logger.info("userSave----->", user);
         userService.saveUser(user);
-    }
+}
 
     //Update a user in the Database
     @PutMapping("/users/update/{id}")

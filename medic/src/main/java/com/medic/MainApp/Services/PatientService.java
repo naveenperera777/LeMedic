@@ -18,7 +18,8 @@ public class PatientService {
     }
 
     public void addPatient(Patient patient){
-          patientDAO.addPatient(patient);
+//          patientDAO.addPatient(patient);
+
     }
 
     public void updatePatient(Patient patient){
