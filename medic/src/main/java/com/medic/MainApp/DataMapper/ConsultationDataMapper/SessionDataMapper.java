@@ -19,9 +19,19 @@ public class SessionDataMapper implements RowMapper<Session> {
         logger.info("session data mapper {}" , resultSet.toString());
 
         Session session = new Session();
-        session.setConsultant_id(resultSet.getInt("consultant_id"));
-        session.setPatient_id(resultSet.getInt("patient_id"));
+        session.setConsultant_id(resultSet.getString("consultant_id"));
+        session.setPatient_id(resultSet.getString("patient_id"));
         session.setTimestamp(resultSet.getTimestamp("timestamp"));
+        session.setSession_id(resultSet.getString("session_id"));
+        session.setComplain(resultSet.getString("complain"));
+        session.setSigns(resultSet.getString("signs"));
+        session.setGeneral_exam(resultSet.getString("general_exam"));
+        session.setSystem_exam(resultSet.getString("system_exam"));
+        session.setInvestigation(resultSet.getString("investigation"));
+        session.setMedical_management(resultSet.getString("medical_management"));
+        session.setSurgical_management(resultSet.getString("surgical_management"));
+        session.setNext_date(resultSet.getDate("next_date"));
+        session.setRemarks(resultSet.getString("remarks"));
         return session;
     }
 }
