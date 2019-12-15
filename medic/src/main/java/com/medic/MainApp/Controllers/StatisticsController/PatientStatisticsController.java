@@ -1,4 +1,5 @@
 package com.medic.MainApp.Controllers.StatisticsController;
+import com.medic.MainApp.DTO.PatientsByGenderDto;
 import com.medic.MainApp.Services.StatisticsServices.PatientStatisticsService;
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("statistics")
@@ -26,6 +29,13 @@ public class PatientStatisticsController extends ResponseUtils {
         int count = patientStatisticsService.getAllPatientCount();
         logger.info("patient record controller {}" ,count);
           return successRetrieval(count);
+    }
+
+    @GetMapping("/patient/count/gender")
+    public ResponseEntity getPatientCountByGender(){
+        List<PatientsByGenderDto> count = patientStatisticsService.getPatientCountByGender();
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
     }
 
 //    @GetMapping("/patient/count/month")
