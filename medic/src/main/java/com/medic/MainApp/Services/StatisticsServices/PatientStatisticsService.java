@@ -9,4 +9,5 @@ import java.util.List;
 public interface PatientStatisticsService {
     int getAllPatientCount();
     List<PatientsByGenderDto> getPatientCountByGender();
+    List getDiseaseList();
 }

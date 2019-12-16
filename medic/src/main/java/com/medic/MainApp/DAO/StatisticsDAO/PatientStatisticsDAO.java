@@ -30,4 +30,9 @@ public class PatientStatisticsDAO {
         return jdbcTemplate.query(sql , new GenderDataMapper());
     }
 
+    public List getDiseaseList(){
+        String sql = "SELECT distinct complain from session";
+        return jdbcTemplate.queryForList(sql, String.class);
+    }
+
 }

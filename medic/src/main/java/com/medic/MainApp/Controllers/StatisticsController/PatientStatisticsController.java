@@ -38,6 +38,12 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(count);
     }
 
+    @GetMapping("/patient/disease/list")
+    public ResponseEntity getDiseaseList(){
+        List diseaseList = patientStatisticsService.getDiseaseList();
+        return successRetrieval(diseaseList);
+    }
+
 //    @GetMapping("/patient/count/month")
 //    public ResponseEntity getPatientCountThisMonth(){
 //    }

@@ -29,4 +29,9 @@ public class PatientStatisticsServiceImpl implements PatientStatisticsService {
         return patientStatisticsDAO.getPatientCountByGender();
     }
 
+    @Override
+    public List getDiseaseList() {
+        return patientStatisticsDAO.getDiseaseList();
+    }
+
 }
