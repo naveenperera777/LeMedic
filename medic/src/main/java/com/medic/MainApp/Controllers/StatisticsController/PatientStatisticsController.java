@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,11 +39,26 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(count);
     }
 
+    @GetMapping("/patient/count/disease")
+    public ResponseEntity getPatientCountByDisease(){
+        List<PatientsByGenderDto> count = patientStatisticsService.getPatientCountByDisease();
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
+
     @GetMapping("/patient/disease/list")
     public ResponseEntity getDiseaseList(){
         List diseaseList = patientStatisticsService.getDiseaseList();
         return successRetrieval(diseaseList);
     }
+
+
+//    @GetMapping("/patient/count/disease/{disease}")
+//    public ResponseEntity getPatientCountForADisease(@PathVariable("disease") String disease){
+//        Object count = patientStatisticsService.getPatientCountForADisease(disease);
+//        return successRetrieval(count);
+//    }
+
 
 //    @GetMapping("/patient/count/month")
 //    public ResponseEntity getPatientCountThisMonth(){

@@ -10,4 +10,6 @@ public interface PatientStatisticsService {
     int getAllPatientCount();
     List<PatientsByGenderDto> getPatientCountByGender();
     List getDiseaseList();
+    List getPatientCountByDisease();
+
 }

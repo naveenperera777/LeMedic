@@ -1,6 +1,8 @@
 package com.medic.MainApp.DAO.StatisticsDAO;
 
+import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
+import com.medic.MainApp.DataMapper.StatisticsDataMapper.DiseaseDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.GenderDataMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,11 @@ public class PatientStatisticsDAO {
     public List getDiseaseList(){
         String sql = "SELECT distinct complain from session";
         return jdbcTemplate.queryForList(sql, String.class);
+    }
+
+    public List<PatientsByDiseaseDto> getPatientCountByDisease(){
+        String sql = "SELECT complain, COUNT(complain) as total from session group by complain";
+        return jdbcTemplate.query(sql, new DiseaseDataMapper());
     }
 
 }
