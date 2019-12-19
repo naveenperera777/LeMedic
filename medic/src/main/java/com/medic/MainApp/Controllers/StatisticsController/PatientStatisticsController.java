@@ -1,4 +1,6 @@
 package com.medic.MainApp.Controllers.StatisticsController;
+import com.medic.MainApp.DTO.PatientsByAreaDto;
+import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
 import com.medic.MainApp.Services.StatisticsServices.PatientStatisticsService;
 import com.medic.MainApp.Utils.ResponseUtils;
@@ -41,7 +43,14 @@ public class PatientStatisticsController extends ResponseUtils {
 
     @GetMapping("/patient/count/disease")
     public ResponseEntity getPatientCountByDisease(){
-        List<PatientsByGenderDto> count = patientStatisticsService.getPatientCountByDisease();
+        List<PatientsByDiseaseDto> count = patientStatisticsService.getPatientCountByDisease();
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
+
+    @GetMapping("/patient/count/area")
+    public ResponseEntity getPatientCountByArea(){
+        List<PatientsByAreaDto> count = patientStatisticsService.getPatientCountByArea();
         logger.info("patient record controller {}" ,count);
         return successRetrieval(count);
     }

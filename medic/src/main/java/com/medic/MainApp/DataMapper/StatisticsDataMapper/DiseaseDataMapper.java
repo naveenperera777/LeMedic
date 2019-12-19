@@ -17,7 +17,7 @@ public class DiseaseDataMapper implements RowMapper<PatientsByDiseaseDto> {
     public PatientsByDiseaseDto mapRow(ResultSet resultSet, int i) throws SQLException {
 
         PatientsByDiseaseDto dto = new PatientsByDiseaseDto();
-        dto.setDisease(resultSet.getString("disease"));
+        dto.setDisease(resultSet.getString("complain"));
         dto.setTotal(resultSet.getString("total"));
         return dto;
 
