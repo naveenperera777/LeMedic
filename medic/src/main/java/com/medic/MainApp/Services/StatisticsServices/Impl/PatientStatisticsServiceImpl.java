@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class PatientStatisticsServiceImpl implements PatientStatisticsService {
 
-
     private final PatientStatisticsDAO patientStatisticsDAO;
 
     PatientStatisticsServiceImpl(PatientStatisticsDAO patientStatisticsDAO){
@@ -43,6 +42,11 @@ public class PatientStatisticsServiceImpl implements PatientStatisticsService {
     @Override
     public List getPatientCountByArea() {
         return patientStatisticsDAO.getPatientCountByArea();
+    }
+
+    @Override
+    public List getPatientCountByDiseaseArea() {
+        return  patientStatisticsDAO.getPatientCountByDiseaseArea();
     }
 
 }

@@ -49,4 +49,10 @@ public class PatientStatisticsDAO {
         return  jdbcTemplate.query(sql , new AreaDataMapper());
     }
 
+    public List getPatientCountByDiseaseArea(String disease, String district){
+        String sql = "SELECT p.district, s.complain, COUNT(s.complain) from session AS s INNER JOIN patient as p ON s.patient_id = p.id WHERE s.complain = ? AND p.district = ?";
+        return  jdbcTemplate.query(sql , new String[]{disease,district} , new AreaDataMapper());
+    }
+
+
 }
