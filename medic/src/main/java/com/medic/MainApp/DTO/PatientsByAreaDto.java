@@ -1,18 +1,9 @@
 package com.medic.MainApp.DTO;
 
 public class PatientsByAreaDto {
-    private String disease;
     private String district;
     private String total;
 
-
-    public String getDisease() {
-        return disease;
-    }
-
-    public void setDisease(String disease) {
-        this.disease = disease;
-    }
 
     public String getDistrict() {
         return district;

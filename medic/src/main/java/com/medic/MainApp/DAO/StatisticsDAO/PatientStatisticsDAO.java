@@ -1,9 +1,11 @@
 package com.medic.MainApp.DAO.StatisticsDAO;
 
+import com.medic.MainApp.DTO.AreaDiseaseDistributionDto;
 import com.medic.MainApp.DTO.PatientsByAreaDto;
 import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.AreaDataMapper;
+import com.medic.MainApp.DataMapper.StatisticsDataMapper.AreaDiseaseDistributionDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.DiseaseDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.GenderDataMapper;
 import org.slf4j.Logger;
@@ -49,14 +51,14 @@ public class PatientStatisticsDAO {
         return  jdbcTemplate.query(sql , new AreaDataMapper());
     }
 
-    public List getDiseaseDistributionOfAnArea(String district){
+    public List<AreaDiseaseDistributionDto> getDiseaseDistributionOfAnArea(String district){
         String sql = "SELECT p.district, s.complain, COUNT(s.complain) as total from session AS s INNER JOIN patient as p ON s.patient_id = p.id WHERE  p.district = ? GROUP BY s.complain";
-        return  jdbcTemplate.query(sql , new String[]{district} , new AreaDataMapper());
+        return  jdbcTemplate.query(sql , new String[]{district} , new AreaDiseaseDistributionDataMapper());
     }
 
-    public List getAreaDistributionOfADisease (String disease){
+    public List<AreaDiseaseDistributionDto> getAreaDistributionOfADisease (String disease){
         String sql = "SELECT s.complain, p.district, COUNT(s.complain) as total from session AS s INNER JOIN patient as p ON s.patient_id = p.id WHERE s.complain = ? GROUP BY p.district";
-        return  jdbcTemplate.query(sql , new String[]{disease} , new AreaDataMapper());
+        return  jdbcTemplate.query(sql , new String[]{disease} , new AreaDiseaseDistributionDataMapper());
     }
 
 

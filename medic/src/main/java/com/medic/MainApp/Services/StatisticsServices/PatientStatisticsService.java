@@ -1,5 +1,6 @@
 package com.medic.MainApp.Services.StatisticsServices;
 
+import com.medic.MainApp.DTO.AreaDiseaseDistributionDto;
 import com.medic.MainApp.DTO.PatientsByAreaDto;
 import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
@@ -14,6 +15,7 @@ public interface PatientStatisticsService {
     List getDiseaseList();
     List<PatientsByDiseaseDto> getPatientCountByDisease();
     List<PatientsByAreaDto> getPatientCountByArea();
-    List getDiseaseDistributionOfAnArea(String district);
+    List<AreaDiseaseDistributionDto> getDiseaseDistributionOfAnArea(String district);
+    List<AreaDiseaseDistributionDto> getAreaDistributionOfADisease(String disease);
 
 }

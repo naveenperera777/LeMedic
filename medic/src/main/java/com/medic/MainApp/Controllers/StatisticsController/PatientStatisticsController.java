@@ -1,4 +1,5 @@
 package com.medic.MainApp.Controllers.StatisticsController;
+import com.medic.MainApp.DTO.AreaDiseaseDistributionDto;
 import com.medic.MainApp.DTO.PatientsByAreaDto;
 import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
@@ -58,7 +59,14 @@ public class PatientStatisticsController extends ResponseUtils {
     //getDiseaseDistributionOfAnArea
     @GetMapping("/patient/count/area/{area}")
     public ResponseEntity getDiseaseDistributionOfAnArea(@PathVariable("area") String area){
-        List<PatientsByAreaDto> count = patientStatisticsService.getDiseaseDistributionOfAnArea(area);
+        List<AreaDiseaseDistributionDto> count = patientStatisticsService.getDiseaseDistributionOfAnArea(area);
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
+
+    @GetMapping("/patient/count/disease/{disease}")
+    public ResponseEntity getAreaDistributionOfADisease(@PathVariable("disease") String disease){
+        List<AreaDiseaseDistributionDto> count = patientStatisticsService.getAreaDistributionOfADisease(disease);
         logger.info("patient record controller {}" ,count);
         return successRetrieval(count);
     }

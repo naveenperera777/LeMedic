@@ -2,6 +2,8 @@ package com.medic.MainApp.Services.StatisticsServices.Impl;
 
 import com.medic.MainApp.DAO.PatientRecordDAO;
 import com.medic.MainApp.DAO.StatisticsDAO.PatientStatisticsDAO;
+import com.medic.MainApp.DTO.AreaDiseaseDistributionDto;
+import com.medic.MainApp.DTO.PatientsByAreaDto;
 import com.medic.MainApp.DTO.PatientsByDiseaseDto;
 import com.medic.MainApp.DTO.PatientsByGenderDto;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.GenderDataMapper;
@@ -45,8 +47,13 @@ public class PatientStatisticsServiceImpl implements PatientStatisticsService {
     }
 
     @Override
-    public List getDiseaseDistributionOfAnArea(String district) {
+    public List<AreaDiseaseDistributionDto> getDiseaseDistributionOfAnArea(String district) {
         return  patientStatisticsDAO.getDiseaseDistributionOfAnArea(district);
+    }
+
+    @Override
+    public List<AreaDiseaseDistributionDto> getAreaDistributionOfADisease(String disease) {
+        return patientStatisticsDAO.getAreaDistributionOfADisease(disease);
     }
 
 }
