@@ -14,6 +14,7 @@ public class AreaDataMapper implements RowMapper<PatientsByAreaDto> {
 
         PatientsByAreaDto dto = new PatientsByAreaDto();
         dto.setDistrict(resultSet.getString("district"));
+        dto.setDisease(resultSet.getString("complain"));
         dto.setTotal(resultSet.getString("total"));
         return dto;
 

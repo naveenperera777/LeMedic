@@ -14,6 +14,6 @@ public interface PatientStatisticsService {
     List getDiseaseList();
     List<PatientsByDiseaseDto> getPatientCountByDisease();
     List<PatientsByAreaDto> getPatientCountByArea();
-    List getPatientCountByDiseaseArea();
+    List getDiseaseDistributionOfAnArea(String district);
 
 }

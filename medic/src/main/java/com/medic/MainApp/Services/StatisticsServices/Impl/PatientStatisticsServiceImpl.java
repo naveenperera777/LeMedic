@@ -45,8 +45,8 @@ public class PatientStatisticsServiceImpl implements PatientStatisticsService {
     }
 
     @Override
-    public List getPatientCountByDiseaseArea() {
-        return  patientStatisticsDAO.getPatientCountByDiseaseArea();
+    public List getDiseaseDistributionOfAnArea(String district) {
+        return  patientStatisticsDAO.getDiseaseDistributionOfAnArea(district);
     }
 
 }

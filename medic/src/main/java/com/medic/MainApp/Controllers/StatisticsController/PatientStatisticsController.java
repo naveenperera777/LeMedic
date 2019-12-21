@@ -55,13 +55,13 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(count);
     }
 
-    @GetMapping("/patient/count/disease/area")
-    public ResponseEntity getPatientCountByDiseaseArea(){
-        List<PatientsByAreaDto> count = patientStatisticsService.getPatientCountByDiseaseArea();
+    //getDiseaseDistributionOfAnArea
+    @GetMapping("/patient/count/area/{area}")
+    public ResponseEntity getDiseaseDistributionOfAnArea(@PathVariable("area") String area){
+        List<PatientsByAreaDto> count = patientStatisticsService.getDiseaseDistributionOfAnArea(area);
         logger.info("patient record controller {}" ,count);
         return successRetrieval(count);
     }
-
 
 
     @GetMapping("/patient/disease/list")
