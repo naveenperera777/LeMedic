@@ -17,5 +17,6 @@ public interface PatientStatisticsService {
     List<DiseaseGenderDto> getGenderDistributionOfADisease(String disease);
     List<DiseaseGenderDto> getDiseaseDistributionOfAGender(String gender);
     List<GenderAreaDto> getGenderDistributionOfAnArea(String district);
+    List<GenderAreaDto> GetAreaDistributionOfAGender(String gender);
 
 }
