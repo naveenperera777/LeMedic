@@ -1,5 +1,6 @@
 package com.medic.MainApp.Controllers.ConsultationControllers;
 
+import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Models.ConsultationModels.Session;
 import com.medic.MainApp.Services.ConsultationServices.SessionService;
 import com.medic.MainApp.Utils.ResponseUtils;
@@ -23,6 +24,11 @@ public class SessionController extends ResponseUtils {
     public void saveUser(@RequestBody Session session){
         logger.info("setsession----->", session);
         sessionService.setSession(session);
+    }
+
+    @PostMapping("/session/pricing")
+    public void savePricingDetails(@RequestBody Pricing pricing){
+        sessionService.setPricing(pricing);
     }
 
     @GetMapping("/session/patient/{patientId}/all")

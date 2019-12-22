@@ -17,9 +17,6 @@ public class PricingDAO {
     }
 
     public void setPricing(Pricing pricing){
-        logger.info("Pricing DAO ---> set pricing {} ");
-        String sql = "INSERT INTO pricing (session_id , payment) VALUES (?,?)";
-        jdbcTemplate.update(sql,pricing.getSession_id(),pricing.getFees());
 
     }
 }

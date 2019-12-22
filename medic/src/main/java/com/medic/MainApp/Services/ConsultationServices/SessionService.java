@@ -1,6 +1,7 @@
 package com.medic.MainApp.Services.ConsultationServices;
 
 import com.medic.MainApp.DAO.ConsultationDAO.SessionDAO;
+import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Models.ConsultationModels.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,11 @@ public class SessionService {
     }
 
     public void setSession(Session session){
-            sessionDAO.setSesssion(session);
+        sessionDAO.setSesssion(session);
+    }
+
+    public void setPricing(Pricing pricing){
+        sessionDAO.setPricing(pricing);
     }
 
     public List getSessionsByPatientId(String patientId){

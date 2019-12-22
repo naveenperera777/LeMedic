@@ -1,6 +1,7 @@
 package com.medic.MainApp.DAO.ConsultationDAO;
 
 import com.medic.MainApp.DataMapper.ConsultationDataMapper.SessionDataMapper;
+import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Models.ConsultationModels.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,11 @@ public class SessionDAO {
         String sql = "INSERT INTO session (patient_id , consultant_id , timestamp, session_id, complain, signs , general_exam,system_exam,investigation,medical_management,surgical_management,next_date,remarks) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,sesssion.getPatient_id(),sesssion.getConsultant_id(),sesssion.getTimestamp(), sesssion.getSession_id(), sesssion.getComplain(),sesssion.getSigns(), sesssion.getGeneral_exam(), sesssion.getSystem_exam(),sesssion.getInvestigation(),sesssion.getMedical_management(),sesssion.getMedical_management(),sesssion.getNext_date(),sesssion.getRemarks());
 
+    }
+
+    public void setPricing(Pricing pricing){
+        String sql = "INSERT INTO pricing (consultationFees,medicationFees,tax,miscellaneous,total) VALUES(?,?,?,?,?)";
+        jdbcTemplate.update(sql,pricing.getConsultationFees(),pricing.getMedicationFees(),pricing.getTax(),pricing.getMiscellaneous(),pricing.getTotal());
     }
 
     public List getSessionsByPatientId(String patientId){
