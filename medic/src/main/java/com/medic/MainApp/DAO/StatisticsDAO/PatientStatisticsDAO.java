@@ -26,7 +26,7 @@ public class PatientStatisticsDAO {
     }
 
     public List<PatientsByGenderDto> getPatientCountByGender(){
-       String sql = "SELECT gender, COUNT(gender) as total FROM patient group by gender";
+        String sql = "SELECT p.gender, COUNT(s.complain) as total FROM session AS s INNER JOIN patient AS p ON s.patient_id = p.id group by p.gender";
         return jdbcTemplate.query(sql , new GenderDataMapper());
     }
 
@@ -41,7 +41,7 @@ public class PatientStatisticsDAO {
     }
 
     public List<PatientsByAreaDto> getPatientCountByArea(){
-        String sql = "SELECT district, COUNT(district) as total from patient group by district";
+        String sql = "SELECT p.district, COUNT(s.complain) as total FROM session AS s INNER JOIN patient AS p ON s.patient_id = p.id group by p.district";
         return  jdbcTemplate.query(sql , new AreaDataMapper());
     }
 
