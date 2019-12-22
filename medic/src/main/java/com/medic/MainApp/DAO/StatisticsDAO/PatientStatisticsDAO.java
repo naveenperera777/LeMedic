@@ -60,5 +60,10 @@ public class PatientStatisticsDAO {
         return  jdbcTemplate.query(sql, new String[]{disease}, new DiseaseGenderDataMapper());
     }
 
+    public List<DiseaseGenderDto> getDiseaseDistributionOfAGender(String gender){
+        String sql = "SELECT p.gender, s.complain, COUNT(s.complain) as total from session AS s INNER JOIN patient as p ON s.patient_id = p.id WHERE p.gender = ? GROUP BY s.complain";
+        return  jdbcTemplate.query(sql, new String[]{gender}, new DiseaseGenderDataMapper());
+    }
+
 
 }

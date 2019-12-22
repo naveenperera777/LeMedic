@@ -75,6 +75,13 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(count);
     }
 
+    @GetMapping("/patient/count/gender/disease/{gender}")
+    public ResponseEntity getDiseaseDistributionOfAGender(@PathVariable("gender") String gender){
+        List<DiseaseGenderDto> count = patientStatisticsService.getDiseaseDistributionOfAGender(gender);
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
+
 
 
 
