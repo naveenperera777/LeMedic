@@ -63,4 +63,9 @@ public class PatientStatisticsServiceImpl implements PatientStatisticsService {
         return  patientStatisticsDAO.getDiseaseDistributionOfAGender(gender);
     }
 
+    @Override
+    public List getGenderDistributionOfAnArea(String district) {
+        return  patientStatisticsDAO.getGenderDistributionOfAnArea(district);
+    }
+
 }

@@ -82,7 +82,12 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(count);
     }
 
-
+    @GetMapping("/patient/count/gender/district/{district}")
+    public ResponseEntity getGenderDistributionOfAnArea(@PathVariable("district") String district){
+        List<GenderAreaDto> count = patientStatisticsService.getGenderDistributionOfAnArea(district);
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
 
 
     @GetMapping("/patient/disease/list")
