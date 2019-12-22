@@ -1,8 +1,5 @@
 package com.medic.MainApp.Controllers.StatisticsController;
-import com.medic.MainApp.DTO.AreaDiseaseDistributionDto;
-import com.medic.MainApp.DTO.PatientsByAreaDto;
-import com.medic.MainApp.DTO.PatientsByDiseaseDto;
-import com.medic.MainApp.DTO.PatientsByGenderDto;
+import com.medic.MainApp.DTO.*;
 import com.medic.MainApp.Services.StatisticsServices.PatientStatisticsService;
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
@@ -70,6 +67,15 @@ public class PatientStatisticsController extends ResponseUtils {
         logger.info("patient record controller {}" ,count);
         return successRetrieval(count);
     }
+
+    @GetMapping("/patient/count/disease/gender/{disease}")
+    public ResponseEntity getGenderDistributionOfADisease(@PathVariable("disease") String disease){
+        List<DiseaseGenderDto> count = patientStatisticsService.getGenderDistributionOfADisease(disease);
+        logger.info("patient record controller {}" ,count);
+        return successRetrieval(count);
+    }
+
+
 
 
     @GetMapping("/patient/disease/list")
