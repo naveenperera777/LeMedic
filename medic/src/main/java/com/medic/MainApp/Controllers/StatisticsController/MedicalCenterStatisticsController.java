@@ -1,12 +1,10 @@
 package com.medic.MainApp.Controllers.StatisticsController;
+import com.medic.MainApp.DTO.ConsultatantPricingSummaryDto;
 import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Services.StatisticsServices.MedicalCenterStatisticsService;
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +19,16 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
     }
 
     @GetMapping("/consultant/receipt/{consultantId}")
-    public ResponseEntity getAllPatientCount(@PathVariable("consultantId") String consultantId){
+    public ResponseEntity getAllReceiptsOfAConsultant(@PathVariable("consultantId") String consultantId){
        List<Pricing> receiptList = medicalCenterStatisticsService.getAllReceiptsOfAConsultant(consultantId);
         return successRetrieval(receiptList);
     }
+
+    @GetMapping("/consultant/receipt/summary/{consultantId}")
+    public ResponseEntity getPricingSummaryOfAConsultantByDate(@PathVariable("consultantId") String consultantId, @RequestHeader("from") String from, @RequestHeader("to")String to){
+        ConsultatantPricingSummaryDto summary = medicalCenterStatisticsService.getPricingSummaryOfAConsultantByDate(consultantId,from,to);
+        return successRetrieval(summary);
+    }
+
+
 }

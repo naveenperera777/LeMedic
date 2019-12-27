@@ -26,4 +26,9 @@ public class MedicalCenterStatisticsDAO {
         return  jdbcTemplate.query(sql, new String[]{consultantId}, new ConsultantReceiptDataMapper());
     }
 
+    public List<Pricing> getPricingSummaryOfAConsultantByDate(String consultantId, String from, String to){
+        String sql = "SELECT p.sessionId, p.consultationFees, p.medicationFees, p.tax, p.total, p.miscellaneous from pricing as p INNER JOIN session s on p.sessionId = s.session_id INNER JOIN users u ON u.id = s.consultant_id WHERE s.consultant_id = ? && s.timestamp BETWEEN ? and ?";
+        return  jdbcTemplate.query(sql, new String[]{consultantId,from,to}, new ConsultantReceiptDataMapper());
+    }
+
 }
