@@ -102,7 +102,4 @@ public class PatientStatisticsController extends ResponseUtils {
         return successRetrieval(diseaseList);
     }
 
-
-
-
 }
