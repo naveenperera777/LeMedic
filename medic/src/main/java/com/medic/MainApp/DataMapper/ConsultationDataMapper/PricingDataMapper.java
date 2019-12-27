@@ -19,6 +19,7 @@ public class PricingDataMapper implements RowMapper<Pricing> {
         logger.info("session data mapper {}" , resultSet.toString());
 
         Pricing pricing = new Pricing();
+        pricing.setSessionId(resultSet.getString("sessionId"));
         pricing.setConsultationFees(resultSet.getDouble("consultationFees"));
         pricing.setMedicationFees(resultSet.getDouble("medicationFees"));
         pricing.setMiscellaneous(resultSet.getDouble("miscellaneous"));

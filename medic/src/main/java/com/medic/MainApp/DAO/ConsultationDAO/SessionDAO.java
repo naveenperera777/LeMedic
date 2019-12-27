@@ -29,8 +29,8 @@ public class SessionDAO {
     }
 
     public void setPricing(Pricing pricing){
-        String sql = "INSERT INTO pricing (consultationFees,medicationFees,tax,miscellaneous,total) VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql,pricing.getConsultationFees(),pricing.getMedicationFees(),pricing.getTax(),pricing.getMiscellaneous(),pricing.getTotal());
+        String sql = "INSERT INTO pricing (sessionId,consultationFees,medicationFees,tax,miscellaneous,total) VALUES(?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,pricing.getSessionId(),pricing.getConsultationFees(),pricing.getMedicationFees(),pricing.getTax(),pricing.getMiscellaneous(),pricing.getTotal());
     }
 
     public List getSessionsByPatientId(String patientId){

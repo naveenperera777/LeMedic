@@ -1,6 +1,7 @@
 package com.medic.MainApp.Models.ConsultationModels;
 
 public class Pricing {
+    private String sessionId;
     private double consultationFees;
     private double medicationFees;
     private  double tax;
@@ -14,6 +15,14 @@ public class Pricing {
 //        this.miscellaneous = miscellaneous;
 //        this.total = total;
 //    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 
     public double getConsultationFees() {
         return consultationFees;
