@@ -1,5 +1,6 @@
 package com.medic.MainApp.Controllers.StatisticsController;
 import com.medic.MainApp.DTO.ConsultatantPricingSummaryDto;
+import com.medic.MainApp.DTO.SessionPatientCountDto;
 import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Services.StatisticsServices.MedicalCenterStatisticsService;
 import com.medic.MainApp.Utils.ResponseUtils;
@@ -27,6 +28,12 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
     @GetMapping("/consultant/receipt/summary/{consultantId}")
     public ResponseEntity getPricingSummaryOfAConsultantByDate(@PathVariable("consultantId") String consultantId, @RequestHeader("from") String from, @RequestHeader("to")String to){
         ConsultatantPricingSummaryDto summary = medicalCenterStatisticsService.getPricingSummaryOfAConsultantByDate(consultantId,from,to);
+        return successRetrieval(summary);
+    }
+
+    @GetMapping("/consultant/count/session/patient/{consultantId}")
+    public ResponseEntity getTotalPatientsSessionsOfAConsultantByDate(@PathVariable("consultantId") String consultantId, @RequestHeader("from") String from, @RequestHeader("to")String to){
+        SessionPatientCountDto summary = medicalCenterStatisticsService.getTotalPatientsSessionsOfAConsultantByDate(consultantId,from,to);
         return successRetrieval(summary);
     }
 

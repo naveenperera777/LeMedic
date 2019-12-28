@@ -1,6 +1,7 @@
 package com.medic.MainApp.Services.StatisticsServices.Impl;
 import com.medic.MainApp.DAO.StatisticsDAO.MedicalCenterStatisticsDAO;
 import com.medic.MainApp.DTO.ConsultatantPricingSummaryDto;
+import com.medic.MainApp.DTO.SessionPatientCountDto;
 import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import com.medic.MainApp.Services.StatisticsServices.MedicalCenterStatisticsService;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,13 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
 
     @Override
     public ConsultatantPricingSummaryDto getPricingSummaryOfAConsultantByDate(String consultantId, String from, String to) {
-        List<Pricing> pricingList =  medicalCenterStatisticsDAO.getPricingSummaryOfAConsultantByDate(consultantId,from,to);
+        List<Pricing> pricingList;
+        if (from.equals("0")&& to.equals("0"))
+            pricingList = medicalCenterStatisticsDAO.getAllTimePricingSummaryOfAConsultant(consultantId);
+        else {
+           pricingList = medicalCenterStatisticsDAO.getPricingSummaryOfAConsultantByDate(consultantId, from, to);
+        }
+
         double consultationFees = 0.0;
         double medicationFees = 0.0;
         double miscellaneous= 0.0;
@@ -31,8 +38,8 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
             consultationFees += item.getConsultationFees();
             medicationFees += item.getMedicationFees();
             miscellaneous += item.getMiscellaneous();
-            total += item.getTotal();
         }
+        total = consultationFees + medicationFees + miscellaneous;
         ConsultatantPricingSummaryDto dto = new ConsultatantPricingSummaryDto();
         dto.setTotalConsultationFees(consultationFees);
         dto.setTotalMedicationFees(medicationFees);
@@ -40,5 +47,16 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
         dto.setTotal(total);
 
         return dto;
+    }
+
+    @Override
+    public SessionPatientCountDto getTotalPatientsSessionsOfAConsultantByDate(String consultantId, String from, String to) {
+        SessionPatientCountDto count;
+        if (from.equals("0")&& to.equals("0")){
+            count = medicalCenterStatisticsDAO.getAllTimeTotalPatientsSessionsOfAConsultant(consultantId);
+        } else {
+            count = medicalCenterStatisticsDAO.getTotalPatientsSessionsOfAConsultantByDate(consultantId, from, to);
+        }
+       return count;
     }
 }
