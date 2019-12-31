@@ -21,11 +21,6 @@ public class MedicalCenterStatisticsDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //Admin only
-    //    public Object getTotalRevenueForMedicalCenter(){
-    //        String sql = "SELECT p.sessionId,p.consultationFees,p.medicationFees,p.tax,p.miscellaneous,p.total from pricing as p INNER JOIN session s ON s.session_id = p.sessionId;"
-    //    }
-
     public List<Pricing> getAllReceiptsOfAConsultant(String consultantId){
         String sql = "SELECT p.sessionId, p.consultationFees, p.medicationFees, p.tax, p.total, p.miscellaneous from pricing as p INNER JOIN session s on p.sessionId = s.session_id INNER JOIN users u ON u.id = s.consultant_id WHERE s.consultant_id = ?";
         return  jdbcTemplate.query(sql, new String[]{consultantId}, new ConsultantReceiptDataMapper());
@@ -72,7 +67,12 @@ public class MedicalCenterStatisticsDAO {
     }
 
     public List<TimeCountDto> getSessionComparisonByDate(String type, String from, String to){
-        String sql = "SELECT session.timestamp,COUNT(session.id) as total from session WHERE session.timestamp BETWEEN ? and ? GROUP BY YEAR(session.timestamp)";
+        String sql;
+        if (type == "month"){
+            sql = "SELECT session.timestamp,COUNT(session.id) as total from session WHERE session.timestamp BETWEEN ? and ? GROUP BY MONTH(session.timestamp)";
+        } else {
+            sql = "SELECT session.timestamp,COUNT(session.id) as total from session WHERE session.timestamp BETWEEN ? and ? GROUP BY YEAR(session.timestamp)";
+        }
         return  jdbcTemplate.query(sql, new String[]{from,to}, new TimeCountDataMapper());
     }
 

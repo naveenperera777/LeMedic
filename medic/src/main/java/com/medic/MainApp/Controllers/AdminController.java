@@ -1,11 +1,9 @@
 package com.medic.MainApp.Controllers;
-
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -18,31 +16,7 @@ public class AdminController extends ResponseUtils {
 
     @GetMapping
     public void sendEmail(){
-//        String recipient = "recipient@gmail.com";
-//        String sender = "naveenperera777@gmail.com";
-//        String host = "localhost";
-//
-//        Properties properties = System.getProperties();
-//        properties.setProperty("mail.smtp.host", host);
-//
-//        Session session = Session.getDefaultInstance(properties);
-//
-//        try {
-//            MimeMessage message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(sender));
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-//            message.addRecipients(Message.RecipientType.TO, new Address[...]); // email to multiple recipients
-//            message.setSubject("Hello World!");
-//            message.setText("And hello from the body of the message!");
-//
-//            Transport.send(message);
-//
-//        } catch (AddressException e) {
-//            e.printStackTrace();
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
-                  // Sender's email ID needs to be mentioned
+
             String from = "";
             String pass ="";
             String to = "";
@@ -91,5 +65,5 @@ public class AdminController extends ResponseUtils {
             }catch (MessagingException mex) {
                 mex.printStackTrace();
             }
-
-}}
+}
+}
