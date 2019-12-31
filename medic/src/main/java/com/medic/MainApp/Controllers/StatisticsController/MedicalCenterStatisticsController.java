@@ -1,4 +1,5 @@
 package com.medic.MainApp.Controllers.StatisticsController;
+import com.medic.MainApp.DTO.ConsultantLeaderBoardDto;
 import com.medic.MainApp.DTO.ConsultatantPricingSummaryDto;
 import com.medic.MainApp.DTO.SessionPatientCountDto;
 import com.medic.MainApp.DTO.TimeCountDto;
@@ -54,6 +55,12 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
     public ResponseEntity getSessionComparisonByDate(@RequestHeader("from") String from, @RequestHeader("to")String to, @RequestHeader("type") String type){
         List<TimeCountDto> timeCount = medicalCenterStatisticsService.getSessionComparisonByDate(type,from,to);
         return successRetrieval(timeCount);
+    }
+
+    @GetMapping("/consultant/all/leaderboard")
+    public ResponseEntity getConsultantLeaderboardByDate(@RequestHeader("from") String from, @RequestHeader("to")String to){
+        List<ConsultantLeaderBoardDto> leaderboard = medicalCenterStatisticsService.getConsultantLeaderboardByDate(from,to);
+        return successRetrieval(leaderboard);
     }
 
 

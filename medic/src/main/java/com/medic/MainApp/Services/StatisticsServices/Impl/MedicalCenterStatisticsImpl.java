@@ -1,5 +1,6 @@
 package com.medic.MainApp.Services.StatisticsServices.Impl;
 import com.medic.MainApp.DAO.StatisticsDAO.MedicalCenterStatisticsDAO;
+import com.medic.MainApp.DTO.ConsultantLeaderBoardDto;
 import com.medic.MainApp.DTO.ConsultatantPricingSummaryDto;
 import com.medic.MainApp.DTO.SessionPatientCountDto;
 import com.medic.MainApp.DTO.TimeCountDto;
@@ -71,6 +72,17 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
     @Override
     public List<TimeCountDto> getSessionComparisonByDate(String type, String from, String to) {
        return medicalCenterStatisticsDAO.getSessionComparisonByDate(type,from,to);
+    }
+
+    @Override
+    public List<ConsultantLeaderBoardDto> getConsultantLeaderboardByDate(String from, String to) {
+        List<ConsultantLeaderBoardDto> leaderBoardList;
+        if (from.equals("0")&& to.equals("0"))
+            leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboard();
+        else {
+            leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboardByDate(from, to);
+        }
+        return leaderBoardList;
     }
 
     public ConsultatantPricingSummaryDto calculateSummary(List<Pricing> pricingList){

@@ -1,14 +1,14 @@
 package com.medic.MainApp.DAO.StatisticsDAO;
-
+import com.medic.MainApp.DTO.ConsultantLeaderBoardDto;
 import com.medic.MainApp.DTO.SessionPatientCountDto;
 import com.medic.MainApp.DTO.TimeCountDto;
+import com.medic.MainApp.DataMapper.StatisticsDataMapper.ConsultantLeaderboardDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.ConsultantReceiptDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.SessionPatientDataMapper;
 import com.medic.MainApp.DataMapper.StatisticsDataMapper.TimeCountDataMapper;
 import com.medic.MainApp.Models.ConsultationModels.Pricing;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import java.sql.Time;
 import java.util.List;
 
@@ -76,8 +76,14 @@ public class MedicalCenterStatisticsDAO {
         return  jdbcTemplate.query(sql, new String[]{from,to}, new TimeCountDataMapper());
     }
 
+    public List<ConsultantLeaderBoardDto> getConsultantLeaderboard(){
+        String sql = "SELECT u.id, u.firstname, u.lastname, COUNT(s.id) as sessionCount from session as s INNER JOIN users u on s.consultant_id = u.id GROUP BY u.id";
+        return jdbcTemplate.query(sql, new ConsultantLeaderboardDataMapper());
+    }
 
-
-
+    public List<ConsultantLeaderBoardDto> getConsultantLeaderboardByDate(String from, String to){
+        String sql = "SELECT u.id, u.firstname, u.lastname, COUNT(s.id) as sessionCount from session as s INNER JOIN users u on s.consultant_id = u.id where s.timestamp BETWEEN ? and ? GROUP BY u.id";
+        return jdbcTemplate.query(sql,new String[]{from,to}, new ConsultantLeaderboardDataMapper());
+    }
 
 }
