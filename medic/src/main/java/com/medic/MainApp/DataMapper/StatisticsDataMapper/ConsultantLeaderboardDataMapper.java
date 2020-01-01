@@ -11,8 +11,8 @@ public class ConsultantLeaderboardDataMapper implements RowMapper<ConsultantLead
 
         ConsultantLeaderBoardDto dto = new ConsultantLeaderBoardDto();
         dto.setId(resultSet.getString("id"));
-        dto.setFirstName(resultSet.getString("complain"));
-        dto.setLastName(resultSet.getString("total"));
+        dto.setFirstName(resultSet.getString("firstname"));
+        dto.setLastName(resultSet.getString("lastname"));
         dto.setCount(resultSet.getString("sessionCount"));
         return dto;
 

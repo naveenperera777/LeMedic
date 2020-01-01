@@ -38,7 +38,7 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
         SessionPatientCountDto summary = medicalCenterStatisticsService.getTotalPatientsSessionsOfAConsultantByDate(consultantId,from,to);
         return successRetrieval(summary);
     }
-
+    //Admin endpoints
     @GetMapping("/consultant/all/session/patient/count")
     public ResponseEntity getAllTimeTotalPatientsSessionsOfAllConsultantsByDate(@RequestHeader("from") String from, @RequestHeader("to")String to){
         SessionPatientCountDto summary = medicalCenterStatisticsService.getAllTimeTotalPatientsSessionsOfAllConsultantsByDate(from,to);

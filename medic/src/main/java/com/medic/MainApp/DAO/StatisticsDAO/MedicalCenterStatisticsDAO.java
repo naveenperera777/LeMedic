@@ -47,12 +47,12 @@ public class MedicalCenterStatisticsDAO {
     }
     //Admin ONLY
     public SessionPatientCountDto getAllTimeTotalPatientsSessionsOfAllConsultants() {
-        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id";
+        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(DISTINCT p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id";
         return  jdbcTemplate.queryForObject(sql , new SessionPatientDataMapper());
     }
 
     public SessionPatientCountDto getTotalPatientsSessionsOfAllConsultantByDate( String from, String to) {
-        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id WHERE s.timestamp BETWEEN ? and ?";
+        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(DISTINCT p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id WHERE s.timestamp BETWEEN ? and ?";
         return  jdbcTemplate.queryForObject(sql, new String[]{from,to}, new SessionPatientDataMapper());
     }
 
@@ -68,7 +68,7 @@ public class MedicalCenterStatisticsDAO {
 
     public List<TimeCountDto> getSessionComparisonByDate(String type, String from, String to){
         String sql;
-        if (type == "month"){
+        if (type.equals("month")){
             sql = "SELECT session.timestamp,COUNT(session.id) as total from session WHERE session.timestamp BETWEEN ? and ? GROUP BY MONTH(session.timestamp)";
         } else {
             sql = "SELECT session.timestamp,COUNT(session.id) as total from session WHERE session.timestamp BETWEEN ? and ? GROUP BY YEAR(session.timestamp)";

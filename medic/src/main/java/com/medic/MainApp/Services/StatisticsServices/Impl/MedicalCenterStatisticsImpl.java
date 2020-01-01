@@ -71,7 +71,15 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
 
     @Override
     public List<TimeCountDto> getSessionComparisonByDate(String type, String from, String to) {
-       return medicalCenterStatisticsDAO.getSessionComparisonByDate(type,from,to);
+       List<TimeCountDto> timeCountList =  medicalCenterStatisticsDAO.getSessionComparisonByDate(type,from,to);
+       if (type.equals("year")){
+           for (TimeCountDto item : timeCountList){
+               String year = item.getTimestamp().split("-")[0];
+               item.setTimestamp(year);
+           }
+           return timeCountList;
+       }
+       return timeCountList;
     }
 
     @Override

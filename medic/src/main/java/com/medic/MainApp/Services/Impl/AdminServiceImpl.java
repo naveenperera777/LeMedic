@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
                     "<h1>Medication</h1>"+
                     "<p>Medical Management : "+  emailDto.getMedication().getMedical_management() + "</p>" +
                     "<p>Surgical Management : "+ emailDto.getMedication().getSurgical_management() + "</p>" +
-                    "<p>Specail Remarks  : "+ emailDto.getMedication().getRemarks() + "</p>" +
+                    "<p>Special Remarks  : "+ emailDto.getMedication().getRemarks() + "</p>" +
                     "<p>Next visit date : "+  emailDto.getMedication().getNext_date() + "</p>" +
                     "<h1>Pricing</h1>"+
                     "<p>Consultation Fees : "+  emailDto.getPricing().getConsultationFees() + "</p>" +
