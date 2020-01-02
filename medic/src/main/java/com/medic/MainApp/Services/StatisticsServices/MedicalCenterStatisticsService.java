@@ -15,6 +15,7 @@ public interface MedicalCenterStatisticsService {
     SessionPatientCountDto getAllTimeTotalPatientsSessionsOfAllConsultantsByDate(String from, String to);
     ConsultatantPricingSummaryDto getPricingSummaryOfAllConsultantByDate(String from, String to);
     List<TimeCountDto> getSessionComparisonByDate(String type, String from, String to);
+    List<TimeCountDto> getRevenueComparisonByDate(String type, String from, String to);
     List<ConsultantLeaderBoardDto> getConsultantLeaderboardByDate(String from, String to);
     int getTotalConsultants();
 }

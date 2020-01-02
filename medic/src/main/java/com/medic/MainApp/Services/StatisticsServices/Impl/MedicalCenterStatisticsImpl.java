@@ -83,12 +83,35 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
     }
 
     @Override
+    public List<TimeCountDto> getRevenueComparisonByDate(String type, String from, String to) {
+        List<TimeCountDto> revenueList = medicalCenterStatisticsDAO.getRevenueComparisonByDate(type,from,to);
+        if (type.equals("year")){
+            for (TimeCountDto item : revenueList){
+                String year = item.getTimestamp().split("-")[0];
+                item.setTimestamp(year);
+            }
+            return revenueList;
+        }
+        return revenueList;
+    }
+
+    @Override
     public List<ConsultantLeaderBoardDto> getConsultantLeaderboardByDate(String from, String to) {
         List<ConsultantLeaderBoardDto> leaderBoardList;
-        if (from.equals("0")&& to.equals("0"))
+        int rank = 0;
+        if (from.equals("0")&& to.equals("0")) {
             leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboard();
+            for (ConsultantLeaderBoardDto list : leaderBoardList) {
+                rank += 1;
+                list.setRank(rank);
+            }
+        }
         else {
             leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboardByDate(from, to);
+            for (ConsultantLeaderBoardDto list : leaderBoardList) {
+                rank += 1;
+                list.setRank(rank);
+            }
         }
         return leaderBoardList;
     }

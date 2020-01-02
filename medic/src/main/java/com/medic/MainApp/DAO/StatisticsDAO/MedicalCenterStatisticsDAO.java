@@ -76,6 +76,16 @@ public class MedicalCenterStatisticsDAO {
         return  jdbcTemplate.query(sql, new String[]{from,to}, new TimeCountDataMapper());
     }
 
+    public List<TimeCountDto> getRevenueComparisonByDate(String type, String from, String to){
+        String sql;
+        if (type.equals("month")){
+            sql = "SELECT s.timestamp,SUM(p.total) as total from session s INNER JOIN pricing p ON s.session_id = p.sessionId WHERE s.timestamp BETWEEN ? and ? GROUP BY MONTH(s.timestamp)";
+        } else {
+            sql = "SELECT s.timestamp,SUM(p.total) as total from session s INNER JOIN pricing p ON s.session_id = p.sessionId WHERE s.timestamp BETWEEN ? and ? GROUP BY YEAR(s.timestamp)";
+        }
+        return  jdbcTemplate.query(sql, new String[]{from,to}, new TimeCountDataMapper());
+    }
+
     public List<ConsultantLeaderBoardDto> getConsultantLeaderboard(){
         String sql = "SELECT u.id, u.firstname, u.lastname, COUNT(s.id) as sessionCount from session as s INNER JOIN users u on s.consultant_id = u.id GROUP BY u.id";
         return jdbcTemplate.query(sql, new ConsultantLeaderboardDataMapper());

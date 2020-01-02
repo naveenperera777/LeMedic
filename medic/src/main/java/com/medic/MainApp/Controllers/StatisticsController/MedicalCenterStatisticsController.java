@@ -57,6 +57,12 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
         return successRetrieval(timeCount);
     }
 
+    @GetMapping("/consultant/all/revenue/comparision")
+    public ResponseEntity getRevenueComparisonByDate(@RequestHeader("from") String from, @RequestHeader("to")String to, @RequestHeader("type") String type){
+        List<TimeCountDto> timeCount = medicalCenterStatisticsService.getRevenueComparisonByDate(type,from,to);
+        return successRetrieval(timeCount);
+    }
+
     @GetMapping("/consultant/all/leaderboard")
     public ResponseEntity getConsultantLeaderboardByDate(@RequestHeader("from") String from, @RequestHeader("to")String to){
         List<ConsultantLeaderBoardDto> leaderboard = medicalCenterStatisticsService.getConsultantLeaderboardByDate(from,to);

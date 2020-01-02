@@ -6,6 +6,15 @@ public class ConsultantLeaderBoardDto {
     private String firstName;
     private String lastName;
     private String count;
+    private int rank;
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
 
     public String getId() {
         return id;
