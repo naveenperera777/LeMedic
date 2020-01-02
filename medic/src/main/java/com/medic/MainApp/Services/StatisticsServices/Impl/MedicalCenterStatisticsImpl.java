@@ -93,6 +93,12 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
         return leaderBoardList;
     }
 
+    @Override
+    public int getTotalConsultants() {
+        List<ConsultantLeaderBoardDto> leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboard();
+        return  leaderBoardList.size();
+    }
+
     public ConsultatantPricingSummaryDto calculateSummary(List<Pricing> pricingList){
         double consultationFees = 0.0;
         double medicationFees = 0.0;

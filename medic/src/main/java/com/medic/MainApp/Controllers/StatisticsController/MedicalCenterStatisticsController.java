@@ -63,6 +63,12 @@ public class MedicalCenterStatisticsController extends ResponseUtils {
         return successRetrieval(leaderboard);
     }
 
+    @GetMapping("/consultant/all/count")
+    public ResponseEntity getTotalConsultants(){
+        int count = medicalCenterStatisticsService.getTotalConsultants();
+        return successRetrieval(count);
+    }
+
 
 
 }
