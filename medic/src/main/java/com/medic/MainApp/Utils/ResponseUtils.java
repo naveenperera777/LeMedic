@@ -22,6 +22,11 @@ public class ResponseUtils {
         return new ResponseEntity (notFoundResponse, HttpStatus.NOT_FOUND);
     }
 
+    public ResponseEntity unauthorized(Object object){
+        MedicResponse unauthorized = new MedicResponse(HttpStatus.UNAUTHORIZED , object , ResponseMessages.UNAUTHORIZED);
+        return new ResponseEntity (unauthorized, HttpStatus.UNAUTHORIZED);
+    }
+
     public ResponseEntity successDelete(){
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

@@ -1,6 +1,7 @@
 package com.medic.MainApp.Services;
 
 import com.medic.MainApp.DAO.UserDAO;
+import com.medic.MainApp.DTO.Login;
 import com.medic.MainApp.Models.User;
 import com.medic.MainApp.Response.MedicResponse;
 import org.apache.tomcat.util.codec.binary.StringUtils;
@@ -21,6 +22,10 @@ public class UserService {
 
     public UserService(UserDAO userDAO){
         this.userDAO = userDAO;
+    }
+
+    public List login(Login login){
+        return userDAO.login(login);
     }
 
     public List<User> getAllUsers(){

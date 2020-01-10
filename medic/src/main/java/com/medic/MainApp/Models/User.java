@@ -8,14 +8,23 @@ public class User {
 
     private String user_id;
     private String nic;
-//    private Date dob;
     private String email;
     private String gender;
     private String first_name;
     private String last_name;
     private String role;
+    private String password;
+    private int sessionCount;
 
     public User() {
+    }
+
+    public int getSessionCount() {
+        return sessionCount;
+    }
+
+    public void setSessionCount(int sessionCount) {
+        this.sessionCount = sessionCount;
     }
 
     public String getUser_id() {
@@ -34,13 +43,13 @@ public class User {
         this.nic = nic;
     }
 
-//    public Date getDob() {
-//        return dob;
-//    }
-//
-//    public void setDob(Date dob) {
-//        this.dob = dob;
-//    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getGender() {
         return gender;

@@ -1,5 +1,7 @@
 package com.medic.MainApp.DAO;
 
+import com.medic.MainApp.DTO.Login;
+import com.medic.MainApp.DataMapper.LoginDataMapper;
 import com.medic.MainApp.DataMapper.UserDataMapper;
 import com.medic.MainApp.Models.User;
 import org.slf4j.Logger;
@@ -18,10 +20,16 @@ public class UserDAO {
 
     private final JdbcTemplate jdbcTemplate;
     private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
+    private static final String DEFAULT_PASSWORD = "123";
 
 
     public UserDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List login(Login login) {
+        String sql = "SELECT * from users where email=? && password=?;";
+        return jdbcTemplate.query(sql , new String[]{login.getUsername(),login.getPassword()}, new LoginDataMapper());
     }
 
     public List<User> getAllUsers() {
@@ -36,8 +44,8 @@ public class UserDAO {
 
     public void saveUser(User user){
        logger.info("UserDAO -> {}",user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
-        String sql = "INSERT INTO users (id , firstname , lastname , gender , nic , email ,role) VALUES (?,?,?,?,?,?,?)";
-         jdbcTemplate.update(sql , user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole());
+        String sql = "INSERT INTO users (id , firstname , lastname , gender , nic , email ,role, password) VALUES (?,?,?,?,?,?,?,?)";
+         jdbcTemplate.update(sql , user.getUser_id() ,user.getFirst_name(),user.getLast_name(),user.getGender(),user.getNic(),user.getEmail(),user.getRole(), DEFAULT_PASSWORD);
 
     }
 

@@ -1,15 +1,13 @@
 package com.medic.MainApp.Controllers;
+import com.medic.MainApp.DTO.Login;
 import com.medic.MainApp.Models.User;
-import com.medic.MainApp.Response.MedicResponse;
-import com.medic.MainApp.Response.ResponseMessages;
 import com.medic.MainApp.Services.UserService;
 import com.medic.MainApp.Utils.ResponseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
+
 import java.util.List;
 
 @RestController
@@ -22,6 +20,15 @@ public class UserController extends ResponseUtils {
         this.userService = userService;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody Login login){
+        List user = userService.login(login);
+        if (user.isEmpty()){
+            return FailedRetrieval(user);
+        }
+        return successRetrieval(user);
+    }
+
     //Get details of all users
     @GetMapping("/users")
     public ResponseEntity getAllUsers(){
@@ -31,7 +38,7 @@ public class UserController extends ResponseUtils {
             ResponseEntity responseEntity = successRetrieval(users);
             return responseEntity;
         }
-        return FailedRetrieval(users);
+        return unauthorized(users);
     }
 
     //Get details of a user by ID
