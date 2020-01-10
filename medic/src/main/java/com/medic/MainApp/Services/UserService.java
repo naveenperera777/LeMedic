@@ -25,12 +25,17 @@ public class UserService {
     }
 
     public List login(Login login){
-        return userDAO.login(login);
+        List users = userDAO.login(login);
+        userDAO.updateCount(login);
+        return users;
     }
 
     public List<User> getAllUsers(){
-
         return userDAO.getAllUsers();
+    }
+
+    public void resetPassword(Login login){
+       userDAO.resetPassword(login);
     }
 
     public List getUserById(String id){

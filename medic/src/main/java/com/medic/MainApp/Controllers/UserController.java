@@ -29,6 +29,11 @@ public class UserController extends ResponseUtils {
         return successRetrieval(user);
     }
 
+    @PostMapping("/login/reset")
+    public void resetPassword(@RequestBody Login login){
+       userService.resetPassword(login);
+    }
+
     //Get details of all users
     @GetMapping("/users")
     public ResponseEntity getAllUsers(){

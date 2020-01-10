@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +28,18 @@ public class UserDAO {
 
     public List login(Login login) {
         String sql = "SELECT * from users where email=? && password=?;";
-        return jdbcTemplate.query(sql , new String[]{login.getUsername(),login.getPassword()}, new LoginDataMapper());
+        List user = jdbcTemplate.query(sql , new String[]{login.getUsername(),login.getPassword()}, new LoginDataMapper());
+        return user;
+    }
+
+    public void updateCount(Login login){
+        String sql2 = "UPDATE users SET sessionCount = 1 WHERE email=?";
+        jdbcTemplate.update(sql2, login.getUsername());
+    }
+
+    public void resetPassword(Login login){
+        String sql = "UPDATE users SET password = ? WHERE email=?";
+         jdbcTemplate.update(sql,login.getPassword(), login.getUsername());
     }
 
     public List<User> getAllUsers() {
