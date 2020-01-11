@@ -42,7 +42,7 @@ public class MedicalCenterStatisticsDAO {
     }
 
     public SessionPatientCountDto getAllTimeTotalPatientsSessionsOfAConsultant(String consultantId) {
-        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id WHERE s.consultant_id=?";
+        String sql = "SELECT COUNT(s.session_id) as sessionCount, COUNT(DISTINCT p.id) as patientCount from session as s INNER JOIN patient p ON s.patient_id = p.id WHERE s.consultant_id=?";
         return  jdbcTemplate.queryForObject(sql, new String[]{consultantId}, new SessionPatientDataMapper());
     }
     //Admin ONLY

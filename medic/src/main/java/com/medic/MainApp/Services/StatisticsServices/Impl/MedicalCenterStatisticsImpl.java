@@ -103,7 +103,7 @@ public class MedicalCenterStatisticsImpl implements MedicalCenterStatisticsServi
             leaderBoardList = medicalCenterStatisticsDAO.getConsultantLeaderboard();
             for (ConsultantLeaderBoardDto list : leaderBoardList) {
                 rank += 1;
-                list.setRank(rank);
+                git .setRank(rank);
             }
         }
         else {
